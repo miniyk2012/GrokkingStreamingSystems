@@ -33,7 +33,7 @@ nc -lk 9991
 2. Start the job in the output (the third) terminal. Replace `/` with `\` on windows.
 ```bash
 # Chapter 2. A basic vehicle count job.
-java -cp target/gss.jar com.streamwork.ch02.job.VehicleCountJob
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp target/gss.jar com.streamwork.ch02.job.VehicleCountJob
 # Chapter 3. A vehicle count job with two source instances and one operator instance.
 java -cp ./target/gss.jar com.streamwork.ch03.job.ParallelizedVehicleCountJob1
 # Chapter 3. A vehicle count job with two source instances and two operator instances, shuffle grouping.
