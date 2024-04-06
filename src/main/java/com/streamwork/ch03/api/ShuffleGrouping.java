@@ -18,7 +18,7 @@ public class ShuffleGrouping implements GroupingStrategy, Serializable {
   /**
    * Get target instance id from an event and component parallelism.
    * @param event The event object to route to the component.
-   * @param The parallelism of the component.
+   * @param parallelism The parallelism of the component.
    * @return The integer key of this event.
    */
   @Override
