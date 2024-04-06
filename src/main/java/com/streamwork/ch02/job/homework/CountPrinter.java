@@ -18,7 +18,7 @@ public class CountPrinter extends Operator {
     }
 
     private void printCount(Pair<String, Integer> counter) {
-        System.out.println("VehicleCount --> ");
+        System.out.println("CountPrinter --> ");
         System.out.println("  " + counter.getKey() + ": " + counter.getValue());
     }
 }

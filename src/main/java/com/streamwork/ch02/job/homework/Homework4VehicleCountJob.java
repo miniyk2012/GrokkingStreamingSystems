@@ -3,6 +3,7 @@ package com.streamwork.ch02.job.homework;
 import com.streamwork.ch02.api.Job;
 import com.streamwork.ch02.api.Stream;
 import com.streamwork.ch02.engine.JobStarter;
+import com.streamwork.ch02.job.VehicleCounter;
 
 public class Homework4VehicleCountJob {
 

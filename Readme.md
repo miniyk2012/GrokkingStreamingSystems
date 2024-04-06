@@ -35,7 +35,7 @@ nc -lk 9991
 # Chapter 2. A basic vehicle count job.
 java --add-opens java.base/java.lang=ALL-UNNAMED -cp target/gss.jar com.streamwork.ch02.job.VehicleCountJob
 # Chapter 3. A vehicle count job with two source instances and one operator instance.
-java -cp ./target/gss.jar com.streamwork.ch03.job.ParallelizedVehicleCountJob1
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.streamwork.ch03.job.ParallelizedVehicleCountJob1
 # Chapter 3. A vehicle count job with two source instances and two operator instances, shuffle grouping.
 java -cp ./target/gss.jar com.streamwork.ch03.job.ParallelizedVehicleCountJob2
 # Chapter 3. A vehicle count job with two source instances and two operator instances, fields grouping.

@@ -9,7 +9,7 @@ import java.util.Map;
 import com.streamwork.ch02.api.Event;
 import com.streamwork.ch02.api.Operator;
 
-class VehicleCounter extends Operator {
+public class VehicleCounter extends Operator {
   private final Map<String, Integer> countMap = new HashMap<String, Integer>();
 
   public VehicleCounter(String name) {  super(name);  }
