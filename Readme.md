@@ -59,3 +59,22 @@ java -cp ./target/gss.jar com.streamwork.ch08.job.EmissionJob
 4. Have fun~
 
 One more thing, after a job is started, you can view the structure of your job by opening a browser and visiting http://localhost:7000.
+
+
+# 源码阅读笔记
+
+1. ch02中的同一个stream不支持apply多个不同的operator, 即使设置了, 也只有后设置的x2能收到event
+```java
+stream.applyOperator(x1);
+stream.applyOperator(x2);
+```
+这是因为在`connectExecutors`方法中, `connection.from`必然会设置成新的队列, 因此如果有多个operator, 只有最后一个会和上游共享同一个队列:
+```agsl
+private void connectExecutors(Connection connection) {
+    // It is a newly connected operator executor. Note that in this version, there is no
+    // shared "from" component and "to" component. The job looks like a single linked list.
+    EventQueue intermediateQueue = new EventQueue(QUEUE_SIZE);
+    connection.from.setOutgoingQueue(intermediateQueue);
+    connection.to.setIncomingQueue(intermediateQueue);
+ }
+```
