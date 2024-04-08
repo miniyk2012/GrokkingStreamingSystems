@@ -63,7 +63,8 @@ One more thing, after a job is started, you can view the structure of your job b
 
 # 源码阅读笔记
 
-1. ch02中的同一个stream不支持apply多个不同的operator, 即使设置了, 也只有后设置的x2能收到event
+1. 本地启动时, java 要加一个jvm参数, 因为java16+以后反射的可见性变得更严格了, `java --add-opens java.base/java.lang=ALL-UNNAMED -cp xxx`
+2. ch02中的同一个stream不支持apply多个不同的operator, 即使设置了, 也只有后设置的x2能收到event
 ```java
 stream.applyOperator(x1);
 stream.applyOperator(x2);
@@ -78,3 +79,5 @@ private void connectExecutors(Connection connection) {
     connection.to.setIncomingQueue(intermediateQueue);
  }
 ```
+3. ch03中的每个组件是如下图连接起来的
+![ch03架构图](./attachment/ch03.png)

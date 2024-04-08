@@ -66,6 +66,7 @@ public class JobStarter {
    * Start all the processes for the job.
    */
   private void startProcesses() {
+    // 让下游的消费者先启动, 上游的生产者晚启动
     Collections.reverse(executorList);
     for (ComponentExecutor executor: executorList) {
       executor.start();
