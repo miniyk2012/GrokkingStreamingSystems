@@ -80,4 +80,9 @@ private void connectExecutors(Connection connection) {
  }
 ```
 3. ch03中的每个组件是如下图连接起来的
+
 ![ch03架构图](./attachment/ch03.png)
+
+4. 目前为止流仍然只支持单向链表, 不支持DAG, 如下图所示
+
+![ch03只支持单向链表](./attachment/ch03_2.png)
