@@ -5,7 +5,7 @@ import com.streamwork.ch04.api.EventCollector;
 import com.streamwork.ch04.api.GroupingStrategy;
 import com.streamwork.ch04.api.Operator;
 
-class WindowedTransactionCountAnalyzer extends Operator {
+public class WindowedTransactionCountAnalyzer extends Operator {
   private static final long serialVersionUID = 6494435291715923496L;
   private int instance;
 
@@ -20,6 +20,7 @@ class WindowedTransactionCountAnalyzer extends Operator {
 
   @Override
   public void apply(Event transaction, EventCollector eventCollector) {
+    System.out.println("WindowedTransactionCountAnalyzer :: instance " + instance + " --> ");
     TransactionEvent e = ((TransactionEvent)transaction);
     // Dummy analyzer. Allow all transactions.
     eventCollector.add(new TransactionScoreEvent(e, 0.0f));

@@ -5,7 +5,7 @@ import com.streamwork.ch04.api.EventCollector;
 import com.streamwork.ch04.api.GroupingStrategy;
 import com.streamwork.ch04.api.Operator;
 
-class ScoreAggregator extends Operator {
+public class ScoreAggregator extends Operator {
   private static final long serialVersionUID = -224012821029619376L;
   private int instance;
   private final ScoreStorage store;

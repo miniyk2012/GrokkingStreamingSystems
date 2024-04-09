@@ -5,7 +5,7 @@ import com.streamwork.ch04.api.EventCollector;
 import com.streamwork.ch04.api.GroupingStrategy;
 import com.streamwork.ch04.api.Operator;
 
-class AvgTicketAnalyzer extends Operator {
+public class AvgTicketAnalyzer extends Operator {
   private static final long serialVersionUID = -8773418260988653189L;
   private int instance;
 
@@ -20,6 +20,7 @@ class AvgTicketAnalyzer extends Operator {
 
   @Override
   public void apply(Event transaction, EventCollector eventCollector) {
+    System.out.println("AvgTicketAnalyzer :: instance " + instance + " --> ");
     TransactionEvent e = ((TransactionEvent)transaction);
     // Dummy analyzer. Allow all transactions.
     eventCollector.add(new TransactionScoreEvent(e, 0.0f));

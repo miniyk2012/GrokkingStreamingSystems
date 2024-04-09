@@ -8,7 +8,7 @@ import java.util.UUID;
 import com.streamwork.ch04.api.EventCollector;
 import com.streamwork.ch04.api.Source;
 
-class TransactionSource extends Source {
+public class TransactionSource extends Source {
   private static final long serialVersionUID = -1791461650661455535L;
 
   private int instance = 0;

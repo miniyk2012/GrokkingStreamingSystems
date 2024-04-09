@@ -16,6 +16,7 @@ import java.util.Set;
 public class EventCollector {
   private static final String DEFAULT_CHANNEL = "default";
 
+  // 多通道
   private final Map<String, List<Event>> queues = new HashMap<String, List<Event>>();
   private final Set<String> registeredChannels = new HashSet<String>();
 

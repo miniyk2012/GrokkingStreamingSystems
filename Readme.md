@@ -37,11 +37,11 @@ java --add-opens java.base/java.lang=ALL-UNNAMED -cp target/gss.jar com.streamwo
 # Chapter 3. A vehicle count job with two source instances and one operator instance.
 java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.streamwork.ch03.job.ParallelizedVehicleCountJob1
 # Chapter 3. A vehicle count job with two source instances and two operator instances, shuffle grouping.
-java -cp ./target/gss.jar com.streamwork.ch03.job.ParallelizedVehicleCountJob2
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.streamwork.ch03.job.ParallelizedVehicleCountJob2
 # Chapter 3. A vehicle count job with two source instances and two operator instances, fields grouping.
-java -cp ./target/gss.jar com.streamwork.ch03.job.ParallelizedVehicleCountJob3
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.streamwork.ch03.job.ParallelizedVehicleCountJob3
 # Chapter 4. A fraud detection job
-java -cp ./target/gss.jar com.streamwork.ch04.job.FraudDetectionJob
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.streamwork.ch04.job.FraudDetectionJob
 # Chapter 4. A job with a forked stream.
 java -cp ./target/gss.jar com.streamwork.ch04.extra.StreamForkJob
 # Chapter 4. A job with a merged stream.
@@ -83,6 +83,8 @@ private void connectExecutors(Connection connection) {
 
 ![ch03架构图](./attachment/ch03.png)
 
-4. 目前为止流仍然只支持单向链表, 不支持DAG, 如下图所示
+4. ch03为止流仍然只支持单向链表, 不支持DAG, 如下图所示
 
 ![ch03只支持单向链表](./attachment/ch03_2.png)
+
+5. ch04开始支持DAG图. 能搭建复杂的逻辑计划.
