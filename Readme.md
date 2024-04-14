@@ -89,8 +89,20 @@ private void connectExecutors(Connection connection) {
 
 5. ch04开始支持DAG图. 能搭建复杂的逻辑计划.
 
-6. 流处理系统中的flink的checkpoint barrier实现: https://www.cnblogs.com/zackstang/p/11745576.html
+6. 至少一次语义有2种方式可以实现
 
-这些实现都是框架做的, 用户只需要提供一个获取当前状态的函数(用于框架自动地定期checkpoint),
+一种是: 确认机制, 事件源会缓存发出的那些事件; 每个计算组件都要向确认器做确认, 如果发现有失败的, 那么确认其会通知事件源重新发出事件; 如果全部成功, 则删除缓存. 
+
+缺点在于: 事件处理顺序会因为重试而不同.
+
+第二种是: 检查点, 用到事件日志(如kafka), 事件源需要定期保存offset至checkpoint中, 当流系统故障时, 事件源可以从上次checkpoint所在偏移量重发消息; 有点是事件能保持顺序.  
+
+无论哪种实现都是框架做的, 对于确认机制的实现, 用户只需在代码中加入确认逻辑.
+
+对于检查点的实现, 用户只需要提供一个获取当前状态的函数(用于框架自动地定期checkpoint),
 
 以及一个从检查点加载状态初始化实例的函数, 用于流作业中的失败重启.
+
+7. 对于恰好一次, 也是用事件日志+checkpoint技术, 和至少一次的区别是: 至少一次checkpoint只需保存事件源的offset; 而恰好一次需要在源+有状态算子中各自保存checkpoint.
+
+流处理系统中的flink的checkpoint barrier实现: https://www.cnblogs.com/zackstang/p/11745576.html
