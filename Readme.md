@@ -43,13 +43,13 @@ java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.stream
 # Chapter 4. A fraud detection job
 java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.streamwork.ch04.job.FraudDetectionJob
 # Chapter 4. A job with a forked stream.
-java -cp ./target/gss.jar com.streamwork.ch04.extra.StreamForkJob
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.streamwork.ch04.extra.StreamForkJob
 # Chapter 4. A job with a merged stream.
-java -cp ./target/gss.jar com.streamwork.ch04.extra.StreamMergeJob
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.streamwork.ch04.extra.StreamMergeJob
 # Chapter 4. A job with a split stream.
-java -cp ./target/gss.jar com.streamwork.ch04.extra.StreamSplitJob
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.streamwork.ch04.extra.StreamSplitJob
 # Chapter 5. A system usage job.
-java -cp ./target/gss.jar com.streamwork.ch05.job.SystemUsageJob
+java --add-opens java.base/java.lang=ALL-UNNAMED -cp ./target/gss.jar com.streamwork.ch05.job.SystemUsageJob
 # Chapter 7. A test job with windowing support.
 java -cp ./target/gss.jar com.streamwork.ch07.job.WindowingTestJob
 # Chapter 8. A emission monitor job with a join operator.
@@ -88,3 +88,9 @@ private void connectExecutors(Connection connection) {
 ![ch03只支持单向链表](./attachment/ch03_2.png)
 
 5. ch04开始支持DAG图. 能搭建复杂的逻辑计划.
+
+6. 流处理系统中的flink的checkpoint barrier实现: https://www.cnblogs.com/zackstang/p/11745576.html
+
+这些实现都是框架做的, 用户只需要提供一个获取当前状态的函数(用于框架自动地定期checkpoint),
+
+以及一个从检查点加载状态初始化实例的函数, 用于流作业中的失败重启.
